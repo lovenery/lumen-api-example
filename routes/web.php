@@ -19,7 +19,7 @@ $app->get('/key', function() {
     return str_random(32);
 });
 
-$app->group(['prefix' => 'api/v1','namespace' => 'App\Http\Controllers'], function($app)
+$app->group(['prefix' => 'api/v1'], function($app)
 {
     $app->post('car','CarController@createCar');
 
