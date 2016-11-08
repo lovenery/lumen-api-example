@@ -18,3 +18,14 @@ $app->get('/', function () use ($app) {
 $app->get('/key', function() {
     return str_random(32);
 });
+
+$app->group(['prefix' => 'api/v1','namespace' => 'App\Http\Controllers'], function($app)
+{
+    $app->post('car','CarController@createCar');
+
+    $app->put('car/{id}','CarController@updateCar');
+
+    $app->delete('car/{id}','CarController@deleteCar');
+
+    $app->get('car','CarController@index');
+});
