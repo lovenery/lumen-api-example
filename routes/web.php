@@ -28,4 +28,6 @@ $app->group(['prefix' => 'api/v1'], function($app)
     $app->delete('car/{id}','CarController@deleteCar');
 
     $app->get('car','CarController@index');
+    // add middleware in controller
+    // $app->get('car', ['middleware' => 'auth', 'uses' => 'CarController@index']);
 });

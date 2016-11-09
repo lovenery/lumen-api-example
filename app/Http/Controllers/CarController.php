@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class CarController extends Controller{
 
+  public function __construct()
+  {
+      $this->middleware('auth', ['only' => [
+          'createCar',
+          'updateCar',
+          'deleteCar'
+      ]]);
+  }
+
 	public function createCar(Request $request){
 
     	$car = Car::create($request->all());
@@ -19,10 +28,12 @@ class CarController extends Controller{
 	public function updateCar(Request $request, $id){
 
     	$car  = Car::find($id);
-    	$car->make = $request->input('make');
-    	$car->model = $request->input('model');
-    	$car->year = $request->input('year');
-    	$car->save();
+    	// $car->make = $request->input('make');
+    	// $car->model = $request->input('model');
+    	// $car->year = $request->input('year');
+    	// $car->save();
+    	// 更好的寫法
+    	$car->update($request->all());
 
     	return response()->json($car);
 	}
